@@ -5,7 +5,7 @@ import streamlit as st
 from pandas import read_csv
 
 # --- --- Import datasets --- ---
-dist_df = read_csv('../data/District_census_2011.csv')
+dist_df = read_csv('data/District_census_2011.csv')
 
 # Page config
 st.set_page_config('Districts Anlysis', '🌄', 'wide')

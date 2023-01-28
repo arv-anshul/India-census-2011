@@ -40,3 +40,8 @@ After taking the session of **CampusX DSMP Program**. I decided that this would 
 
 1. Plot some default `scatter plot` with plotly to display many feature analysis in one graph.
 2. After analysing the `Rough Analysis.py` graphs I found that `Litracy` columns does not depict the way it has to. That's why we have to calculate the `litracy rate` of the particulars.
+
+## Feature Engineering
+
+1. In the dataset _Male, Female and Literate_ columns are present instead of _Literacy Rate and Sex Ratio_.
+2. The dataset is in _wide formate_ so I turn it into _long formate_ for analysis.
