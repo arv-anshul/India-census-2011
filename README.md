@@ -45,3 +45,7 @@ After taking the session of **CampusX DSMP Program**. I decided that this would 
 
 1. In the dataset _Male, Female and Literate_ columns are present instead of _Literacy Rate and Sex Ratio_.
 2. The dataset is in _wide formate_ so I turn it into _long formate_ for analysis.
+
+## Created by [arv-anshul](https://github.com/arv-anshul)
+
+Used dataset is not appropiate for real life analysis. I just used it to improve my skills. Find the used datasets [here](#1-census-data-get-from-kaggle).
