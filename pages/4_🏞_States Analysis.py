@@ -22,14 +22,16 @@ if plot_type == 'Maps':
     choice_menu = ['Population', 'Sex Ratio', 'Literacy Rate',
                    'Male Literacy Rate', 'Female Literacy Rate']
     size = st.sidebar.selectbox('Choose size', choice_menu)
-    color = st.sidebar.selectbox('Choose color', choice_menu)
+    color = st.sidebar.selectbox('Choose color', choice_menu, 2)
     # --- --- --- --- --- --- --- --- --- --- #
     fig = px.scatter_mapbox(state, lat='Latitude', lon='Longitude',
                             size=size, color=color,
-                            hover_name='State', zoom=3,
+                            hover_name='State', zoom=4,
                             mapbox_style='carto-positron',
-                            title=f'Shows the {size} & {color} of Indian States.')
-    st.plotly_chart(fig, True)
+                            title=f'Shows the {size} & {color} of Indian States.',
+                            height=900)
+    if st.sidebar.button('Plot'):
+        st.plotly_chart(fig, True, theme=None)
 else:
     choice_menu_dict = {'Household Size': household_size,
                         'Religion': religion,
@@ -50,9 +52,10 @@ else:
     # Plots: treemap, sunbrust
     treemap = px.treemap(df, path=[px.Constant('India'), 'State', 'Variable'],
                          values='Value', color='Value', height=1000, width=800)
-    sunbrust = px.sunburst(df, path=['State', 'Variable'], values='Value',
+    sunbrust = px.sunburst(df, path=[px.Constant('India'), 'State', 'Variable'], values='Value',
                            height=1000, width=500)
 
-    st.plotly_chart(treemap, True, theme=None)
-    with st.expander('Sunbrust Plot', False):
-        st.plotly_chart(sunbrust, True)
+    with st.expander('Treemap Plot', True):
+        st.plotly_chart(treemap, True, theme=None)
+    with st.expander('Sunbrust Plot'):
+        st.plotly_chart(sunbrust, True, theme=None)
