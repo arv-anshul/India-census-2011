@@ -3,6 +3,7 @@
 import plotly.express as px
 import streamlit as st
 from pandas import read_csv
+
 from utils.wide_to_long import wide_to_long
 
 # Page config
@@ -11,7 +12,7 @@ st.set_page_config('Districts Analysis', '🌄', 'wide')
 # --- Import datasets ---
 district = read_csv('data/District_census_2011.csv')
 (religion, household_number, caste,
- education, household_size, age_groups) = wide_to_long(district, 'State')
+ education, household_size, age_groups) = wide_to_long(district, 'District')
 
 # --- Sidebar ---
 st.sidebar.title('Cenuse 2011')
@@ -26,9 +27,9 @@ if plot_type == 'Maps':
     # --- --- --- --- --- --- --- --- --- --- #
     fig = px.scatter_mapbox(district, lat='Latitude', lon='Longitude',
                             size=size, color=color,
-                            hover_name='State', zoom=4,
+                            hover_name='District', zoom=4,
                             mapbox_style='carto-positron',
-                            title=f'Shows the {size} & {color} of Indian States.',
+                            title=f'Shows the {size} & {color} of Indian Districts.',
                             height=900)
     if st.sidebar.button('Plot'):
         st.plotly_chart(fig, True, theme=None)
@@ -50,9 +51,9 @@ else:
     df = choice_menu_dict[str(choice)].query('State==@sl_state')
 
     # Plots: treemap, sunbrust
-    treemap = px.treemap(df, path=[px.Constant('India'), 'State', 'Variable'],
+    treemap = px.treemap(df, path=[px.Constant('India'), 'State', 'District', 'Variable'],
                          values='Value', color='Value', height=1000, width=800)
-    sunbrust = px.sunburst(df, path=[px.Constant('India'), 'State', 'Variable'],
+    sunbrust = px.sunburst(df, path=[px.Constant('India'), 'State', 'District', 'Variable'],
                            values='Value', height=1000, width=500)
 
     with st.expander('Treemap Plot', True):
