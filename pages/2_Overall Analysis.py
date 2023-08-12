@@ -4,16 +4,21 @@ import plotly.express as px
 import streamlit as st
 from pandas import read_csv
 
-from utils.wide_to_long import wide_to_long
+from utils.melt_dataset import melt_dataset
 
 # Page config
 st.set_page_config('Overall Analysis', '🏞', 'wide')
 
 # --- Import datasets ---
 state = read_csv('data/State_census_2011.csv')
-(religion, household_number, caste, education, household_size, age_groups) = wide_to_long(
-    state, 'State'
-)
+(
+    religion,
+    household_number,
+    caste,
+    education,
+    household_size,
+    age_groups,
+) = melt_dataset(state, False)
 
 # --- Sidebar ---
 st.sidebar.title('Census 2011')
